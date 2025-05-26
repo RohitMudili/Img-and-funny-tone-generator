@@ -1,0 +1,22 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# Node modules
+node_modules/
+
+# Data files
+backend/data/embeddings/
+backend/data/processed/
+
+# IDE
+.vscode/
+.idea/ 
