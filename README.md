@@ -1,106 +1,64 @@
-# Story Chat Interface
+# Story Time Chat
 
-An interactive chat interface that uses AI to generate funny responses and images based on classic stories.
+A fun chat interface that lets you ask questions about classic stories and get responses in a humorous tone!
 
 ## Features
 
-- Vector-based story search using FAISS
-- Funny story responses using OpenAI
-- Image generation using Fal AI
-- Modern React frontend with Material-UI
-- Flask backend with CORS support
-
-## Prerequisites
-
-- Python 3.8+
-- Node.js 14+
-- OpenAI API key
-- Fal AI API key
+- PDF processing and chunking
+- PostgreSQL database for story storage
+- FastAPI backend
+- Streamlit chat interface with a funny tone
+- OpenAI-powered humorous responses
+- Support for multiple classic books
 
 ## Setup
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd story-chat
+1. Install PostgreSQL and create a database named `story_chunks`
+
+2. Create a `.env` file with your database credentials and OpenAI API key:
+```
+DB_NAME=story_chunks
+DB_USER=your_username
+DB_PASSWORD=your_password
+DB_HOST=localhost
+DB_PORT=5432
+OPENAI_API_KEY=your_openai_api_key
 ```
 
-2. Create a `.env` file in the root directory with the following content:
-```
-OPENAI_API_KEY=your_openai_key_here
-FAL_AI_API_KEY=your_fal_ai_key_here
-FLASK_SECRET_KEY=your_secret_key_here
-FLASK_ENV=development
-FLASK_DEBUG=True
-OPENAI_MODEL=gpt-3.5-turbo
-SIMILARITY_THRESHOLD=0.7
-```
-
-3. Set up the backend:
+3. Install the required packages:
 ```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Set up the frontend:
+4. Start the backend server:
 ```bash
-cd frontend
-npm install
+python backend.py
 ```
 
-## Running the Application
-
-1. Start the backend server:
+5. Process the PDFs:
 ```bash
-cd backend
-python app.py
+python process_pdfs.py
 ```
 
-2. In a new terminal, start the frontend:
+6. Start the Streamlit interface:
 ```bash
-cd frontend
-npm start
+streamlit run app.py
 ```
-
-3. Open your browser and navigate to `http://localhost:3000`
 
 ## Usage
 
-1. Type your question about the stories in the chat input
-2. The system will search for relevant story content
-3. If found, you'll receive a funny response and an AI-generated image
-4. If not found, you'll receive a humorous "I don't know" response
+1. Open your browser and go to `http://localhost:8501`
+2. Type your question in the chat input
+3. Get responses from the stories in a funny tone!
 
-## Project Structure
+## Supported Books
 
-```
-story-chat/
-├── .env                          # Environment variables
-├── .gitignore
-├── README.md
-├── backend/
-│   ├── app.py                   # Flask application
-│   ├── requirements.txt
-│   ├── story_processor.py       # PDF processing
-│   ├── vector_store.py          # FAISS operations
-│   └── data/
-│       ├── pdfs/                # Story PDFs
-│       ├── embeddings/          # FAISS index
-│       └── processed/           # Processed chunks
-└── frontend/
-    ├── package.json
-    └── src/
-        └── App.js              # React application
-```
+- Alice in Wonderland
+- Gulliver's Travels
+- The Arabian Nights
 
-## Adding New Stories
+## Note
 
-1. Place new PDF files in `backend/data/pdfs/`
-2. Delete the `backend/data/embeddings/` directory
-3. Restart the Flask application
-
-## License
-
-MIT 
+Make sure to have:
+- PostgreSQL running and the database created before starting the application
+- A valid OpenAI API key in your `.env` file 
